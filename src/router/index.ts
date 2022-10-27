@@ -14,6 +14,12 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/baiduMap/index.vue')
   },
   {
+    path: '/gaodeMap',
+    name: 'gaodeMap',
+    meta: {title:'高德地图', keepAlive: false},
+    component: () => import('@/views/gaodeMap/index.vue')
+  },
+  {
     path: '/example',
     name: 'example',
     meta: {title:'例子', keepAlive: false},

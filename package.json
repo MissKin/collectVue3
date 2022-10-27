@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vuemap/vue-amap": "^1.1.18",
     "ant-design-vue": "^3.2.13",
     "vue": "^3.2.37",
     "vue-baidu-map-3x": "^1.0.23"
