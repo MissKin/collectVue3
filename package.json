@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "ant-design-vue": "^3.2.13",
-    "vue": "^3.2.37"
+    "vue": "^3.2.37",
+    "vue-baidu-map-3x": "^1.0.23",
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.1.0",
