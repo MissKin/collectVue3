@@ -26,7 +26,7 @@ const list = reactive<Number[]>([1,2,3])
  * 6.接收props，定义type Props，在defineComponent 的形参中设置参数类型
  * 7. 事件： 1： 不传递参数时，直接定义，需要参数则 用bind来改变this的指向 onClick={TestClick.bind(this,item)}
  */
-const test = defineComponent((props:Props) => {
+const temTsx = defineComponent((props:Props) => {
     return () => (
         <div>
             <p>标题：{props.title}</p>
@@ -48,4 +48,4 @@ const test = defineComponent((props:Props) => {
         </div>
     )
 })
-export default test
+export default temTsx
