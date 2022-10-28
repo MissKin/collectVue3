@@ -1,10 +1,11 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Layout from '../components/HelloWorld.vue'
 
-const routes: Array<RouteRecordRaw> = [
+export const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'HelloWorld',
+    meta: {title:'首页', keepAlive: false},
     component:()=>import('@/components/HelloWorld.vue'),
   },
   {
@@ -20,13 +21,17 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/gaodeMap/index.vue')
   },
   {
+    path: '/tdMap',
+    name: 'tdMap',
+    meta: {title:'天地图地图', keepAlive: false},
+    component: () => import('@/views/tdMap/index.vue')
+  },
+  {
     path: '/example',
     name: 'example',
     meta: {title:'例子', keepAlive: false},
     component: () => import('@/views/example/index.vue')
   },
-
-
 ]
 
 // @ts-ignore

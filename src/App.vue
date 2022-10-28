@@ -1,7 +1,17 @@
 <script setup lang="ts">
+import {routes} from '@/router/index'
 </script>
 
 <template>
+  <div class="container">
+    <header class="header-box">
+      <div class="nav-item" v-for="(head, index) in routes">
+        <router-link :to="head.name" class="nav-item-a">{{head.meta.title || '首页'}}</router-link>
+      </div>
+    </header>
+    <router-view class="route-box"></router-view>
+  </div>
+
 <!--  <div>-->
 <!--    <temTsx/>-->
 <!--    <p class="font">哈哈哈123 abx</p>-->
@@ -13,23 +23,36 @@
 <!--    </a>-->
 <!--  </div>-->
 <!--  <HelloWorld msg="Vite + Vue" />-->
-  <router-view></router-view>
+
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-.font{
-  font-family: 'dfzy';
-  font-size: 28px;
+<style lang="scss" scoped>
+.container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .header-box{
+    height: 60px;
+    display: flex;
+    gap: 50px;
+    font-size: 18px;
+    line-height: 60px;
+    justify-content: center;
+  }
+  .nav-item:hover{
+    transform: scale(1.1);
+    transition: all ease 1s;
+  }
+  .router-link-active{
+    transform: scale(1.5);
+    /* text-decoration: underline; */
+    border: 1px dashed;
+    border-radius: 6px;
+    padding: 0 6px;
+  }
+  .route-box{
+    flex:1;
+  }
 }
 </style>
