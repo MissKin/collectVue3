@@ -3,7 +3,7 @@ import {routes} from '@/router/index'
 </script>
 
 <template>
-  <div class="container">
+  <div class="container-box">
     <header class="header-box">
       <div class="nav-item" v-for="(head, index) in routes">
         <router-link :to="head.name" class="nav-item-a">{{head.meta.title || '首页'}}</router-link>
@@ -27,9 +27,11 @@ import {routes} from '@/router/index'
 </template>
 
 <style lang="scss" scoped>
-.container{
+.container-box{
   width: 100%;
   height: 100%;
+  position: relative;
+  background-color: #08132f;
   display: flex;
   flex-direction: column;
   .header-box{
@@ -52,6 +54,7 @@ import {routes} from '@/router/index'
     padding: 0 6px;
   }
   .route-box{
+    height: calc(100% - 60px);
     flex:1;
   }
 }

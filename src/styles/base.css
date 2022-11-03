@@ -1,0 +1,7 @@
+@import './bigScreen.scss';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+

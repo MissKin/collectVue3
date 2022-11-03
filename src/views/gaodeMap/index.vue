@@ -1,9 +1,9 @@
 <template>
   <div class="map" style="width: 100%; height: 100%;">
-    <div>
-      <input v-model.number="center.lng">
-      <input v-model.number="center.lat">
-      <input v-model.number="zoom">
+    <div class="flex gap-3">
+      <input class="border border-gray-500" v-model.number="center.lng">
+      <input class="border border-gray-500" v-model.number="center.lat">
+      <input class="border border-gray-500" v-model.number="zoom">
     </div>
     <div class="flex-1">
       <el-amap ref="mapRef" :center="[center.lng, center.lat]" :events="mapEvents" :zoom="zoom" @init="init">

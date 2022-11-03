@@ -4,9 +4,9 @@ import Layout from '../components/HelloWorld.vue'
 export const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'HelloWorld',
-    meta: {title:'首页', keepAlive: false},
-    component:()=>import('@/components/HelloWorld.vue'),
+    name: 'BigScreen',
+    meta: {title:'大屏', keepAlive: false},
+    component:()=>import('@/views/bigScreen/index.vue'),
   },
   {
     path: '/baiduMap',

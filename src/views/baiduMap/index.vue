@@ -1,7 +1,10 @@
 <template>
-  <input v-model.number="center.lng">
-  <input v-model.number="center.lat">
-  <input v-model.number="zoom">
+  <div class="flex gap-3">
+    <input class="border border-gray-500" v-model.number="center.lng">
+    <input class="border border-gray-500" v-model.number="center.lat">
+    <input class="border border-gray-500" v-model.number="zoom">
+  </div>
+
   <baidu-map
       class="bm-view"
       ref="mapRef"
