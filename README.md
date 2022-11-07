@@ -23,3 +23,5 @@ You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/
 5. tsx不支持v-for指令，使用map方法遍历数组，map函数中返回一个标签渲染dom节点
 6. 接收props，定义type Props，在defineComponent 的形参中设置参数类型
 7. 事件： 1： 不传递参数时，直接定义，需要参数则 用bind来改变this的指向 onClick={TestClick.bind(this,item)}
+
+## bigscreen 数据大屏常用的样式和组件

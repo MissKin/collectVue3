@@ -3,6 +3,10 @@ import './styles/base.css'
 import './style.css'
 import App from './App.vue'
 import './fonts/fonts.css'
+
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+
 import "ant-design-vue/dist/antd.css";
 import router from './router'
 import { createPinia } from 'pinia'
@@ -30,4 +34,4 @@ createApp(App).use(router).use(pinia).use(BaiduMap, {
   ak: 'IayHFtG6Sw8oDtPEVIFDG8ODUII17t0l',
   v:'3.0',  // 默认使用3.0
   type: 'API' // ||API 默认API  (使用此模式 BMap=BMapGL)
-}).use(VueAMap).mount('#app')
+}).use(VueAMap).use(ElementPlus, {size: 'small'}).mount('#app')

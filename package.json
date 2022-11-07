@@ -13,6 +13,7 @@
     "ant-design-vue": "^3.2.13",
     "dayjs": "^1.11.6",
     "echarts": "^5.4.0",
+    "element-plus": "^2.2.19",
     "postcss-loader": "^4.2.0",
     "vue": "^3.2.37",
     "vue-baidu-map-3x": "^1.0.23",
