@@ -13,6 +13,7 @@
     "ant-design-vue": "^3.2.13",
     "dayjs": "^1.11.6",
     "echarts": "^5.4.0",
+    "echarts-gl": "^2.0.9",
     "element-plus": "^2.2.19",
     "postcss-loader": "^4.2.0",
     "vue": "^3.2.37",

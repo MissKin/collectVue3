@@ -1,9 +1,10 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory, RouteRecordRaw,createWebHashHistory } from 'vue-router'
 import Layout from '../components/HelloWorld.vue'
 
 export const routes: Array<RouteRecordRaw> = [
+ 
   {
-    path: '/',
+    path: '/bigscreen',
     name: 'BigScreen',
     meta: {title:'大屏', keepAlive: false},
     component:()=>import('@/views/bigScreen/index.vue'),
@@ -32,11 +33,17 @@ export const routes: Array<RouteRecordRaw> = [
     meta: {title:'例子', keepAlive: false},
     component: () => import('@/views/example/index.vue')
   },
+  {
+    path: '/echarts',
+    name: 'echarts',
+    meta: {title:'图表', keepAlive: false},
+    component: () => import('@/views/echarts/index.vue')
+  },
 ]
 
 // @ts-ignore
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes
 })
 
