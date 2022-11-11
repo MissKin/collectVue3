@@ -10,7 +10,9 @@
                 <ThreeDimenPie/>
             </div>
         </div>
-        <div class="right-box flex-1"></div>
+        <div class="right-box flex-1">
+          <div ref="echartRightRef" class="echart-box"></div>
+        </div>
     </div>
 </template>
 <script setup lang="ts">
@@ -18,7 +20,7 @@ import {ref, reactive, toRefs, onMounted} from 'vue'
 import { init, EChartsOption } from "echarts";
 import {timmerOneAnim} from '@/utils/echartDispatch'
 
-import {circlePoint, cylinderOption, barsOption} from './options'
+import {circlePoint, cylinderOption, barsOption, lineOption} from './options'
 import ThreeDimenPie from './components/ThreeDimenPie.vue'
 
 interface Props {
@@ -58,14 +60,26 @@ const generBarsEchart = () => {
 //   const chartDom = document.getElementById('pieChart1') as HTMLElement
   const chartValue = init(echartLeftThreeRef.value)
 
-  const options = barsOption()
+  const options = lineOption()
   chartValue.setOption(options)
 }
+// 第四个
 
+const echartRightRef = ref()
+const generLineEchart = () => {
+//   const chartDom = document.getElementById('pieChart1') as HTMLElement
+  const chartValue = init(echartRightRef.value)
+   const seriesData = [75,76,79,65,64,61,59,57,56,45,44,40]
+    const xData = ["00:00","02:00","04:00","06:00","08:00","10:00","12:00","14:00","16:00","18:00","20:00","22:00"]
+  
+  const options = lineOption({seriesData, xData})
+  chartValue.setOption(options)
+}
 onMounted(() => {
     generCircleEchart()
     generCylinderEchart()
     generBarsEchart()
+    generLineEchart()
 })
 </script>
 <style lang="scss" scoped>

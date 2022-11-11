@@ -401,3 +401,294 @@ export const barsOption = () => {
     };
     return option
 }
+
+// 象形柱形图
+export const pictorialBar = () => {
+  const option = {
+    backgroundColor: 'rgba(12,17,47)',
+    tooltip: {
+      confine: true,
+      trigger: 'axis',
+      axisPointer: {
+        type: 'shadow',
+      },
+      backgroundColor: 'rgba(3, 16, 42, 0.85)',
+      borderColor: 'rgba(114, 190, 253, 0.6)',
+      borderWidth: 1,
+      padding: 12,
+    },
+    grid: {
+      left: '8%',
+      top: '15%',
+      bottom: '15%',
+      right: '8%',
+    },
+    xAxis: {
+      data: ['需要解决问题', '历史遗留问题', '桃谷绘里香', '重大项目问题'],
+      axisTick: {
+        show: false,
+      },
+      axisLine: {
+        lineStyle: {
+          color: 'rgba(255,255,255,0.45)',
+          width: 1, // 这里是为了突出显示加上的
+        },
+      },
+      axisLabel: {
+        color: '#ffffff',
+        fontSize: 12,
+        fontFamily: 'Bebas',
+      },
+    },
+    yAxis: [{
+      name: '问题数量(个)',
+      type: 'value',
+      min: 0,
+      minInterval: 1,
+      nameTextStyle: {
+        fontSize: 12,
+        color: '#ffffff',
+        padding: [0, 24, 4, 0],
+      },
+      splitLine: {
+        lineStyle: {
+          color: 'rgba(186, 231, 255, 0.09)',
+          type: 'solid',
+        },
+      },
+      splitArea: { show: false },
+      axisLine: {
+        show: false,
+      },
+      axisTick: {
+        show: false,
+      },
+      axisLabel: {
+        fontSize: 12,
+        color: '#ffffff',
+        fontFamily: 'Bebas',
+      },
+    }, {
+      name: '完成率(%)',
+      type: 'value',
+      min: 0,
+      max: 100,
+      nameTextStyle: {
+        fontSize: 12,
+        color: '#ffffff',
+        padding: [0, 0, 4, 24],
+      },
+      splitLine: {
+        lineStyle: {
+          color: 'rgba(186, 231, 255, 0.09)',
+          type: 'solid',
+        },
+      },
+      splitArea: { show: false },
+      axisLabel: {
+        color: '#ffffff',
+        fontSize: 12,
+        fontFamily: 'Bebas',
+      },
+      axisLine: {
+        show: false,
+      },
+      axisTick: {
+        show: false,
+      },
+    }],
+    dataZoom: [],
+    series: [{
+      type: 'pictorialBar',
+      barCategoryGap: '20px',
+      symbol: 'path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z',
+      label: {
+        show: false,
+      },
+      itemStyle: {
+        normal: {
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+            offset: 0,
+            color: 'rgba(2, 209, 250, 1)',
+          }, {
+            offset: 1,
+            color: 'rgba(0, 164, 255, 0.11)',
+          }]),
+        },
+        emphasis: {
+          opacity: 1,
+        },
+      },
+      data: [4675, 2375, 5319, 2275],
+      z: 10,
+    },
+    {
+      type: 'line',
+      smooth: false,
+      yAxisIndex: 1,
+      data: [31, 80, 71, 85],
+      symbolSize: 8,
+      itemStyle: {
+        normal: {
+          color: '#fd8c18',
+        },
+      },
+    }],
+  };
+
+  return option
+}
+
+export const lineOption = ({ seriesData = [], xData = [] }) => {
+  const option = {
+    backgroundColor: 'transparent',
+    grid: {
+      left: '10%',
+      right: 0,
+      top: '15%',
+      bottom: '15%',
+    },
+    xAxis: {
+      data: xData,
+      position: 'bottom',
+      type: 'category',
+      axisLine: {
+        show: true,
+        lineStyle: {
+          type: 'solid',
+          color: 'gray',
+          opacity: 1,
+        },
+      },
+      axisTick: {
+        show: false,
+      },
+      axisLabel: {
+        show: true,
+        rotate: 0,
+        fontSize: 12,
+        color: '#fff',
+      },
+      splitLine: {
+        show: true,
+        lineStyle: {
+          color: ['#ECF1F6', '#ECF1F6'],
+          width: 0,
+          type: 'dashed',
+        },
+      },
+      gridIndex: 0,
+    },
+    legend: {
+      show: false,
+      top: '4%',
+      itemHeight: 9,
+      itemWidth: 9,
+      textStyle: {
+        color: '#A1D5FF',
+        fontSize: 12,
+      },
+      // data: [{
+      //   name: '累计增速',
+      //   // 强制设置图形为圆。
+      //   icon: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAqklEQVQ4jWNk+L9lCQMDgxEDdcA5Fqhh2VQycCoTlQyCgxFoIAsBeRkGBoZUBgYGYyj/LAMDw2wGBoYn5BgoC4o1BgYGHiQxWwYGBkNoqniMTRM+L6egGQYDPFA5rACfgcZ45EzIMZAsgM/As3jkzpDjwrkMDAxfsIh/gcqRbOAjaGweZmBg+AbFh6Fij3BpIpQOQUmjnoAaol1IFhihhcM5aJ6lHDAwnAMAagkZ1p1ZuI4AAAAASUVORK5CYII=',
+      //   // 设置文本为红色
+      //   textStyle: {
+      //     color: 'white'
+      //   }
+      // }],
+      itemGap: 12, // 设置间距
+    },
+    tooltip: {
+      trigger: 'axis',
+      textStyle: { fontSize: '12' },
+      formatter: (params) => {
+        const rander = params
+          .map(
+            (item) =>
+              `<div>${item.seriesName}: ${
+                item.seriesType !== 'line' ? item.value : item.value + '%'
+              }</div>`,
+          )
+          .join('');
+        return `
+              <div>${params[0].axisValue}</div>
+              ${rander}
+          `;
+      },
+    },
+    yAxis: [
+      {
+        name: '(辆)',
+        nameTextStyle: {
+          align: 'left',
+          color: '#fff',
+          padding: [0, 0, 0, -35],
+          fontSize: 12,
+        },
+        axisLine: {
+          show: false,
+        },
+        axisTick: {
+          show: false,
+        },
+        axisLabel: {
+          show: true,
+          rotate: 0,
+          fontSize: 12,
+          color: '#fff',
+        },
+        splitLine: {
+          show: true,
+          lineStyle: {
+            type: 'dashed',
+            color: 'rgba(255,255,255,0.3)',
+          },
+        },
+      },
+    ],
+    series: [
+      {
+        name: '车流量',
+        type: 'line',
+        label: {
+          show: false,
+        },
+        data: seriesData,
+        lineStyle: {
+          width: 3,
+          color: '#ff6060', // 线条颜色
+          borderColor: '#ff6060',
+        },
+        symbol: 'none',
+        // symbolSize: '20',
+        areaStyle: {
+          // 区域填充样式
+          // 线性渐变，前4个参数分别是x0,y0,x2,y2(范围0~1);相当于图形包围盒中的百分比。如果最后一个参数是‘true’，则该四个值是绝对像素位置。
+          color: new echarts.graphic.LinearGradient(
+            0,
+            0,
+            0,
+            1,
+            [
+              {
+                offset: 0,
+                color: '#ff6060',
+              },
+              // {
+              //   offset: 0.8,
+              //   color: '#073a45'
+              // },
+              {
+                offset: 1,
+                color: '#081b34',
+              },
+            ],
+            false,
+          ),
+        },
+      },
+    ],
+  };
+  return option;
+};
