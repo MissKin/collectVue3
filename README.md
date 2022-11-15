@@ -25,3 +25,6 @@ You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/
 7. 事件： 1： 不传递参数时，直接定义，需要参数则 用bind来改变this的指向 onClick={TestClick.bind(this,item)}
 
 ## bigscreen 数据大屏常用的样式和组件
+1. 弹窗
+2. 滚动列表
+3. 数字增长
