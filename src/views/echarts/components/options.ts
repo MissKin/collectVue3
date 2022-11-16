@@ -239,9 +239,9 @@ export function getPie3D(pieData:Array<any>, internalDiameterRatio) {
       },
       tooltip: {
         formatter: params => {
-          if (params.seriesName !== 'mouseoutSeries') {
-            console.log(option.series[params.seriesIndex], '44444', params);
-            return `${params.seriesName}<br/><span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:${params.color};"></span>${option.series[params.seriesIndex].pieData.value}`;
+          if (params.seriesName !== 'mouseoutSeries' && params.componentSubType === 'pie') {
+            const dataValue = params.data.value
+            return `${params.seriesName}<br/><span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:${params.color};"></span>${dataValue}`;
           }
         }
       },

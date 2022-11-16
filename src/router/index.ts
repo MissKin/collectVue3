@@ -27,12 +27,12 @@ export const routes: Array<RouteRecordRaw> = [
     meta: {title:'天地图地图', keepAlive: false},
     component: () => import('@/views/tdMap/index.vue')
   },
-  {
-    path: '/example',
-    name: 'example',
-    meta: {title:'例子', keepAlive: false},
-    component: () => import('@/views/example/index.vue')
-  },
+  // {
+  //   path: '/example',
+  //   name: 'example',
+  //   meta: {title:'例子', keepAlive: false},
+  //   component: () => import('@/views/example/index.vue')
+  // },
   {
     path: '/echarts',
     name: 'echarts',

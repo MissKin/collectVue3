@@ -161,16 +161,16 @@ const dropshow = computed(() => {
   return `drop-shadow(176px 0 0 ${dropColor.value})`
 })
 
-onMounted(() => {
-  setDatetime()
-  dateInt = setInterval(() => {
-    setDatetime()
-  }, 1000)
-})
+// onMounted(() => {
+//   setDatetime()
+//   dateInt = setInterval(() => {
+//     setDatetime()
+//   }, 1000)
+// })
 
-onUnmounted(() => {
-  clearInterval(dateInt)
-})
+// onUnmounted(() => {
+//   clearInterval(dateInt)
+// })
 onMounted(() => {
   generPieEchart()
 })
@@ -181,25 +181,25 @@ onMounted(() => {
   <!-- 头部 -->
   <header class="myHeader flex">
     <div class="header_left flex items-center">
-<!--      <div class="city flex items-center">-->
-<!--        <img style="height: 50px;padding-bottom: 2px" :src="cityIcon" alt=""/>-->
-<!--        <span>鹿城区</span>-->
-<!--      </div>-->
-<!--      <div class="weather flex pl-8">-->
-<!--        <div class="pr-1 flex items-center">-->
-<!--          <img :src="weatherIcon" alt=""/>-->
-<!--          <span class="pl-2 pr-2">小雨</span>-->
-<!--        </div>-->
-<!--        <div class="temperature">9-12℃</div>-->
-<!--      </div>-->
+     <div class="city flex items-center">
+       <!-- <img style="height: 50px;padding-bottom: 2px" :src="cityIcon" alt=""/> -->
+       <span>XX区</span>
+     </div>
+     <div class="weather flex pl-8">
+       <div class="pr-1 flex items-center">
+         <!-- <img :src="weatherIcon" alt=""/> -->
+         <span class="pl-2 pr-2">小雨</span>
+       </div>
+       <div class="temperature">9-12℃</div>
+     </div>
     </div>
     <div class="title header_middle">大屏常用到的元素</div>
     <div class="title_right header_right flex items-center justify-end pr-4">
-     <div class="time pr-4">{{ time }}</div>
+     <!-- <div class="time pr-4">{{ time }}</div>
      <div class="date">
        <div>{{ date }}</div>
        <div>{{ week }}</div>
-     </div>
+     </div> -->
     </div>
   </header>
    <div class="flex gap-4 w-full h-full p-4 flex-auto bigscreen-container">
@@ -221,13 +221,13 @@ onMounted(() => {
         </modal>
       </Teleport>
       <br>
-      <a-select v-model="selectVal" class="bigScreen-input mt-4">
+      <!-- <a-select v-model="selectVal" class="bigScreen-input mt-4">
         <a-select-option label="藤桥镇">藤桥镇</a-select-option>
         <a-select-option label="南汇街道">南汇街道</a-select-option>
         <a-select-option label="松台街道">松台街道</a-select-option>
       </a-select>
       <br>
-      <a-input v-model="inputVal" placeholder="请输入" class="bigScreen-input mt-4"></a-input>
+      <a-input v-model="inputVal" placeholder="请输入" class="bigScreen-input mt-4"></a-input> -->
       <p class="sub-title">1. drop-shadow:原图是黑白色，可以任意改变图片颜色</p>
       <div class="flex p-4">
         <div class="flex-1">
@@ -243,7 +243,7 @@ onMounted(() => {
         </div>
       </div>
       <p class="sub-title">2. {{`<img> 标签获取图片代码` }}</p>
-      <pre>
+      <pre class="white">
         function getIcon(name: string) {
           return new URL(`../../../assets/${name}`, import.meta.url).href;
         }
@@ -253,7 +253,7 @@ onMounted(() => {
       <module-box-bg></module-box-bg>
       </div>
       <p class="sub-title">4. {{`时间范围获取` }}</p>
-      <div>
+      <div class="white">
         <p v-for="(item, index) in dateTimes" :key="index">
           {{item.name}}: {{item.start_time}} -- {{item.end_time}}
         </p>
@@ -394,5 +394,8 @@ $blue:   #00aeff;
   .a-input__suffix{
     color: #00aeff;
   }
+}
+.white{
+  color: #00aeff;
 }
 </style>

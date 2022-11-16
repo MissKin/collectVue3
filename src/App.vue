@@ -1,5 +1,37 @@
 <script setup lang="ts">
 import {routes} from '@/router/index'
+import moment from '@/moment'
+import { ref, reactive, onMounted, onUnmounted, toRefs } from 'vue'
+
+let dateInt: any
+const state = reactive({
+  dateInfo: {
+    date: '',
+    week: '',
+    time: '',
+  }
+})
+function setDatetime() {
+  state.dateInfo.date = moment().format('YYYY-MM-DD')
+  state.dateInfo.week = moment.weekdays()[moment().isoWeekday() % 7]
+  state.dateInfo.time = moment().format('HH:mm:ss')
+  // const stamptime = Date.parse(new Date())
+  // today.value = moment(stamptime).format('YYYY-MM-DD HH:mm:ss')
+}
+
+const {dateInfo} = toRefs(state)
+onMounted(() => {
+  setDatetime()
+  dateInt = setInterval(() => {
+    setDatetime()
+  }, 1000)
+  // 修改颜色  APP.vue 中的onMounted增加有效
+  document.body.style.setProperty('--el-text-color-regular', '#19b1fb');
+})
+
+onUnmounted(() => {
+  clearInterval(dateInt)
+})
 </script>
 
 <template>
@@ -9,20 +41,15 @@ import {routes} from '@/router/index'
         <router-link :to="head.name" class="nav-item-a">{{head.meta.title || '首页'}}</router-link>
       </div>
     </header>
+    <div class="time-box flex items-center justify-end pr-4">
+      <div class="time pr-4 text-lg">{{ dateInfo.time }}</div>
+      <div class="date">
+        <div>{{ dateInfo.date }}</div>
+        <div>{{ dateInfo.week }}</div>
+      </div>
+    </div>
     <router-view class="route-box"></router-view>
   </div>
-
-<!--  <div>-->
-<!--    <temTsx/>-->
-<!--    <p class="font">哈哈哈123 abx</p>-->
-<!--    <a href="https://vitejs.dev" target="_blank">-->
-<!--      <img src="/vite.svg" class="logo" alt="Vite logo" />-->
-<!--    </a>-->
-<!--    <a href="https://vuejs.org/" target="_blank">-->
-<!--      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />-->
-<!--    </a>-->
-<!--  </div>-->
-<!--  <HelloWorld msg="Vite + Vue" />-->
 
 </template>
 
@@ -56,6 +83,11 @@ import {routes} from '@/router/index'
   .route-box{
     height: calc(100% - 60px);
     flex:1;
+  }
+  .time-box{
+    position: absolute;
+    right: 10px;
+    color: #fff;
   }
 }
 </style>

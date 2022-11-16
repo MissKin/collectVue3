@@ -40,10 +40,10 @@
   const townsApplyList = ref<Array<ItemProps>>()
   const handleData = () => {
     const list = [
-      { townName: '昆阳镇', num: 9, percent: '0' },
-      { townName: '鳌江镇', num: 7, percent: '0' },
-      { townName: '水头镇', num: 6, percent: '0' },
-      { townName: '萧江镇', num: 5, percent: '0' }
+      { townName: '第一镇', num: 9, percent: '0' },
+      { townName: '第一镇', num: 7, percent: '0' },
+      { townName: '第一镇', num: 6, percent: '0' },
+      { townName: '第一镇', num: 5, percent: '0' }
     ]
     // const allCount = list.reduce((prev:number, cur) => prev += cur.num, 0)
     const allCount = list.reduce((pre: number, todo: ItemProps) => pre + todo.num, 0);
