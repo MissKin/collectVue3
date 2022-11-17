@@ -8,9 +8,6 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AButton: typeof import('ant-design-vue/es')['Button']
-    AInput: typeof import('ant-design-vue/es')['Input']
-    ASelect: typeof import('ant-design-vue/es')['Select']
-    ASelectOption: typeof import('ant-design-vue/es')['SelectOption']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     NoticeBar: typeof import('./src/components/noticeBar/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

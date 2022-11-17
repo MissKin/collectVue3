@@ -9,7 +9,6 @@
           <Search/>
         </el-icon>
       </div>
-     
       <div v-if="suggests.length" class="search_wrapper">
         <div class="suggest_item" v-for="(item, TIndex) in suggests" :key="TIndex" @click="handlePois(item)">
           <div class="suggest_item_name">{{item.name}}</div>
@@ -22,6 +21,19 @@
       <el-button type="primary" @click="handleContentMenu">鼠标右击添加菜单</el-button>
       <el-button type="primary" @click="handleAddBrushTool">{{brushObj.flag ? '关闭' : '开启'}}画笔</el-button>
       <el-button v-show="brushObj.flag" type="primary" @click="clearBrush">清除画笔痕迹</el-button>
+      <el-button type="primary" @click="drawGeojson()">绘制geojson</el-button>
+      <el-form inline>
+        <el-form-item label="经度">
+          <el-input v-model="markpoint.lng"/>
+        </el-form-item>
+        <el-form-item label="纬度">
+          <el-input v-model="markpoint.lat"/>
+        </el-form-item>
+        <el-form-item >
+          <el-button type="primary" @click="handleLngLatMarker">查询</el-button>
+        </el-form-item>
+      </el-form>
+      <el-button type="warning" @click="clearAll">一键清除</el-button>
     </div>
     <!-- 数据类型 -->
     <div class="data-box">
@@ -37,6 +49,9 @@ import {ref, reactive, toRefs, onMounted, onUnmounted} from 'vue'
 import {getIcon} from '@/utils/index'
 import {SuggestProps} from './type'
 import { Search } from '@element-plus/icons-vue'
+import tdtUtils from '../js/tdt_utils'
+import wenzhouJson from '@/assets/json/wenzhou.json'
+
 interface Props {
   count: number
 }
@@ -54,7 +69,14 @@ defineExpose({})
  */
 const map = ref()
 const init = () => {
- map.value = new T.Map('mapContainerTD')
+  map.value = new T.Map('mapContainerTD', {
+    // 地图的投影方式 EPSG:900913(墨卡托投影)，EPSG:4326(大地平面投影)
+    projection: "EPSG:4326",
+    // min 0 max 18
+    minZoom: 5,
+    maxZoom: 18,
+ })
+ //centerAndZoom 是显示该地图的中心点
  map.value.centerAndZoom(new T.LngLat(120.681255, 28.006125), 10);
   addCtrlMapType()
   createCloudMarkerCollection()
@@ -182,10 +204,6 @@ function MapMoveend(e) {
  * 右键菜单
  */
 const handleContentMenu = () => {
-  // 创建一个菜单
-  const menu = new T.ContextMenu({
-    width: 100
-  });
   // 菜单列表
   const txtMenuItem = [
       {
@@ -213,16 +231,9 @@ const handleContentMenu = () => {
         }
       }
   ];
+  const menu = tdtUtils.createContextMenu(txtMenuItem, {})
 
-  for (var i = 0; i < txtMenuItem.length; i++) {
-      //添加菜单项
-      var menuItem = new T.MenuItem(txtMenuItem[i].text, txtMenuItem[i].callback);
-      menu.addItem(menuItem);
-      if (i == 1) {
-        //添加分割线
-        menu.addSeparator();
-      }
-  }
+
   //添加右键菜单
   map.value.addContextMenu(menu);
 }
@@ -309,16 +320,17 @@ const search = reactive<{suggests: SuggestProps[], keyword:String}>({
 const { keyword, suggests} = toRefs(search)
 const localsearch = ref()
 const infoWin = ref()
+// 清除搜索列表
+function clearAll() {
+  map.value.clearOverLays()
+  search.keyword = ''
+  search.suggests = []
+    // map.clearOverLays();
+    // document.getElementById("suggestsDiv").innerHTML = "";
+    // document.getElementById("suggestsDiv").style.display = "none";
+}
 const handleSearch = () => {
-  // 清除搜索列表
-  function clearAll() {
-    map.value.clearOverLays()
-    search.keyword = ''
-    search.suggests = []
-      // map.clearOverLays();
-      // document.getElementById("suggestsDiv").innerHTML = "";
-      // document.getElementById("suggestsDiv").style.display = "none";
-  }
+
   //解析建议词信息
   function suggests(obj) {
     if (obj) {
@@ -393,10 +405,36 @@ function showPosition(marker, name, html) {
   infoWin.value = new T.InfoWindow("<h5>" + html + "</h5>", new T.Point([0, 0]));
   marker.openInfoWindow(infoWin.value);
 }
+/**
+ * 添加点位
+ */
+const markpoint = reactive({
+  lng: '',
+  lat: '',
+})
+const handleLngLatMarker = () => {
+  const marker = tdtUtils.createMarker([markpoint.lng, markpoint.lat], '')
+  map.value.addOverLay(marker);
+}
+/**
+ * 显示geojson地图
+ */
+function drawGeojson() {
+  const styleOption = {
+    lineWidth:3,
+    fillColor: "#167FFD",
+    fillOpacity:0.3
+  }
+  const lines = tdtUtils.getLinesFromGeojson(wenzhouJson)
+  lines.forEach((coors)=>{
+    let polygon=tdtUtils.createPolygon(coors[0],styleOption);
+    map.value.addOverLay(polygon);
+  })
+}
 onMounted(() => {
   init()
   // 搜索
-  handleSearch()
+  handleSearch()  
 })
 onUnmounted(() => {
   map.value.removeEventListener('moveend', MapMoveend)
@@ -418,9 +456,9 @@ onUnmounted(() => {
   .input_box{
     display: flex;
     align-items: center;
-    border: 1px solid #0c5bb7;
+    border: 1px solid #409eff;
     border-radius: 5px;
-    background: #0c5bb7;
+    background: #409eff;
     color: #fff;
     padding: 4px 2px 4px 5px;
   }
@@ -441,6 +479,9 @@ onUnmounted(() => {
   }
 }
 .btns-box{
+  width: 100%;
+  display: flex;
+  gap: 10px;
   position: absolute;
   top: 10px;
   left: 10px;
