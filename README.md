@@ -28,3 +28,4 @@ You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/
 1. 弹窗
 2. 滚动列表
 3. 数字增长
+4. 
