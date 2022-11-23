@@ -6,6 +6,9 @@ import modal from "@/views/bigScreen/components/modal.vue"
 import moduleBoxBg from "@/views/bigScreen/components/moduleBoxBg.vue"
 import divProgress from "@/views/bigScreen/components/divProgress.vue"
 import customProgress from "@/views/bigScreen/components/customProgress.vue"
+import circleDemo from "./components/circleDemo.vue"
+import waveDemo from "./components/waveDemo.vue"
+
 
 import moment from '@/moment'
 import CountUp from 'vue-countup-v3'
@@ -204,10 +207,12 @@ onMounted(() => {
   </header>
    <div class="flex gap-4 w-full h-full p-4 flex-auto bigscreen-container">
     <!-- 左侧 -->
-    <div class="w-1/3 bg-blue p-4">
+    <div class="w-1/3 bg-blue p-4 overflow-auto">
       <div id="pieChart1" class="pie-chart"></div>
       <divProgress/>
       <customProgress/>
+      <circleDemo/>
+      <waveDemo/>
     </div>
     <!-- 中间 -->
     <div class="flex-1 bg-blue p-4 overflow-auto">
@@ -261,7 +266,7 @@ onMounted(() => {
 
 
     </div>
-    <div class="w-1/3 bg-blue p-4">
+    <div class="w-1/3 bg-blue p-4 overflow-auto">
       <p class="big-font">
         <count-up :end-val="count" :options="countOptions">
           <template #suffix>
@@ -278,23 +283,23 @@ onMounted(() => {
       </vue3-seamless-scroll>
       <p class="sub-title">整体缩放,根据设计稿的宽高比</p>
 
-<!--      <pre>-->
-<!--        1. 引入ScaleBox-->
-<!--        import SacleBox from '@/components/ScaleBox.vue'-->
-<!--        2. 包围大屏内容-->
-<!--          <SacleBox>-->
-<!--            <HeaderModule title="藤桥镇社会治理平台" />-->
-<!--            <div class="map-bg-gradient map-bg-gradient-left">-->
-<!--              <LeftComponent />-->
-<!--            </div>-->
-<!--            <div class="map-bg-gradient map-bg-gradient-right">-->
-<!--              <rightComponent />-->
-<!--            </div>-->
-<!--            <div class="map-bg-gradient-center">-->
-<!--              <MiddleComponent />-->
-<!--            </div>-->
-<!--          </SacleBox>-->
-<!--      </pre>-->
+     <pre style="color:aliceblue">
+      {{`1. 引入ScaleBox`}}
+      {{`import SacleBox from '@/components/ScaleBox.vue'`}}
+       {{`2. 包围大屏内容`}}
+        {{`<SacleBox>`}}
+           {{`<HeaderModule title="藤桥镇社会治理平台" />`}}
+           {{`<div class="map-bg-gradient map-bg-gradient-left">`}}
+            {{` <LeftComponent />`}}
+          {{`</div>`}}
+          {{`<div class="map-bg-gradient map-bg-gradient-right">`}}
+             {{`<rightComponent />`}}
+          {{`</div>`}}
+          {{`<div class="map-bg-gradient-center">`}}
+              {{`<MiddleComponent />`}}
+           {{`</div>`}}
+        {{`</SacleBox>`}}
+     </pre>
     </div>
   </div>
 </section>
